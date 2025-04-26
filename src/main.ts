@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpException, HttpStatus, INestApplication, Logger, ValidationError, ValidationPipe } from '@nestjs/common';
-import { constants } from './shared/constants/constants'
+import { constants } from './shared/constants'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidatorErrors } from './shared/interfaces/errors.interface';
 import { NestExpressApplication } from '@nestjs/platform-express';
