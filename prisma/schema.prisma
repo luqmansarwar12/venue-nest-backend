@@ -79,6 +79,8 @@ model User {
   phone String @unique
   role UserRole  
   status UserStatus @default(ACTIVE)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   venues Venue[]
   bookings Booking[]
@@ -88,10 +90,6 @@ model User {
   venueOwner VenueOwner? @relation("VenueOwnerUser")
   customer Customer? @relation("CustomerUser")
   address Address[] @relation("UserAddress")
-
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model SuperAdmin {
@@ -106,6 +104,7 @@ model VenueOwner {
   userId String @unique
   user User @relation(name:"VenueOwnerUser",fields: [userId],references: [id])
 }
+
 model Customer {
   id String @id @default(uuid())
   userId String @unique
