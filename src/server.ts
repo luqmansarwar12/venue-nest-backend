@@ -9,7 +9,7 @@ import {
   ValidationError,
   ValidationPipe,
 } from '@nestjs/common';
-import { app, database } from './config';
+import { app } from './config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidatorErrors } from './core/interfaces/errors.interface';
 import { NestExpressApplication } from '@nestjs/platform-express';

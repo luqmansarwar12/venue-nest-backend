@@ -14,11 +14,13 @@ import {
   Length,
   Min,
   ValidateIf,
+  ValidateNested,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { UserRole } from 'src/shared/enums';
+import { Type } from 'class-transformer';
 
-export class CreateUserDto {
+export class UserSignupDto {
   @ApiProperty()
   @IsNotEmpty({ message: 'Email is required' })
   @IsEmail({}, { message: 'Invalid email format' })
@@ -34,6 +36,14 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'Phone numbers are required' })
   phone: string;
 
+  @ApiProperty()
+  @IsNotEmpty({ message: 'Name is required' })
+  @IsString({ message: 'Name must be a string' })
+  @Length(3, 15, { message: 'Name must be between 3 and 15 characters' })
+  name: string;
+}
+
+export class SignupDto {
   @ApiProperty({ type: String, enum: UserRole })
   @IsEnum(UserRole)
   @IsNotEmpty({ message: 'Role is required' })
@@ -41,21 +51,7 @@ export class CreateUserDto {
   @IsNotIn([UserRole.SUPER_ADMIN])
   role: UserRole;
 
-  @ApiProperty()
-  @IsNotEmpty({ message: 'Name is required' })
-  @IsString({ message: 'Name must be a string' })
-  @Length(3, 15, { message: 'Name must be between 3 and 15 characters' })
-  firstName: string;
-
-  @ApiProperty()
-  @IsOptional()
-  @IsString({ message: 'Last name must be a string' })
-  @Length(3, 15, { message: 'Last name must be between 3 and 15 characters' })
-  lastName: string;
-
-  @ApiProperty()
-  @ValidateIf((dto: CreateUserDto) =>
-    [UserRole.CONTACT_SUPPORT].includes(dto.role),
-  )
-  sessionSkills: string;
+  @ValidateNested()
+  @Type(() => UserSignupDto)
+  userData: UserSignupDto;
 }
