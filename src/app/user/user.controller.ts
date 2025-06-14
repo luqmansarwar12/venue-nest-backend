@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UseTransformer } from 'src/shared/transformer';
+import { UseTransformer } from 'src/core/transformer';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('user')

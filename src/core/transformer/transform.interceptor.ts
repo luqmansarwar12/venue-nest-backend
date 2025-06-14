@@ -8,7 +8,7 @@ import {
 import { Reflector } from '@nestjs/core/services/reflector.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TransformerEnum } from '../enums/enums';
+import { TransformerEnum } from '../../shared/enums/transformer.enum';
 import { Transform } from './transform';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { applyDecorators, SetMetadata, UseInterceptors } from '@nestjs/common';
 import { ApiResponseMetadata } from '@nestjs/swagger/dist/decorators/api-response.decorator';
 import { ClassConstructor } from 'class-transformer/types/interfaces';
 import { ApiResponse } from '@nestjs/swagger';
-import { TransformerEnum } from '../enums/enums';
+import { TransformerEnum } from '../../shared/enums/transformer.enum';
 import { TransformInterceptor } from './transform.interceptor';
 
 export function UseTransformer<T>(
