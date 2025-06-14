@@ -101,15 +101,15 @@ model SuperAdmin {
 
 model VenueOwner {
   id              String @id @default(uuid())
-  businessLicense String
-  experienceYears Int
-  userId          String @unique
+  businessLicense String @map("business_license")
+  experienceYears Int    @map("experience_years")
+  userId          String @unique @map("user_id")
   user            User   @relation(name: "VenueOwnerUser", fields: [userId], references: [id])
 }
 
 model Customer {
   id     String @id @default(uuid())
-  userId String @unique
+  userId String @unique @map("user_id")
   user   User   @relation(name: "CustomerUser", fields: [userId], references: [id])
 }
 
@@ -122,7 +122,7 @@ model Address {
   country   String
   longitude Float?
   latitude  Float?
-  isPrimary Boolean @default(true)
+  isPrimary Boolean @default(true) @map("is_primary")
 
   userId String? @map("user_id")
   user   User?   @relation("UserAddress", fields: [userId], references: [id])
