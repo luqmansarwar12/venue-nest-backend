@@ -2,7 +2,7 @@
 
 ## Models Overview
 
-### User ()
+### User
 
 - Stores user information (customers and venue owners).
 
